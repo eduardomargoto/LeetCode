@@ -1,17 +1,18 @@
 fun mergeAlternately(word1: String, word2: String): String {
     var stringMerged = StringBuilder()
-    val minLength = word1.length.coerceAtMost(word2.length)
-
-    for (index in 0..minLength-1) {
-        stringMerged.append("${word1[index]}${word2[index]}")
+    var index1 = 0
+    var index2 = 0
+    while (index1 < word1.length && index2 < word2.length) {
+        stringMerged
+            .append(word1[index1++])
+            .append(word2[index2++])
     }
-    stringMerged.append(
-        if (word1.length > word2.length) {
-            word1.substring(minLength)
-        } else {
-            word2.substring(minLength)
-        }
-    )
+    if (index1 < word1.length) {
+        stringMerged.append(word1.substring(index1))
+    }
+    if (index2 < word2.length) {
+        stringMerged.append(word2.substring(index2))
+    }
     return stringMerged.toString()
 }
 
